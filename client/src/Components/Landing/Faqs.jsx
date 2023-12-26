@@ -16,7 +16,7 @@ const Faqs = () => {
       .get('http://localhost:8080/faqs')
       .then((response) => {
         const initialQuestionStates = {};
-        console.log(response.data);
+        // console.log(response.data);
         response.data.forEach((faq, index) => {
           initialQuestionStates[`question${index + 1}`] = 'closed';
         });
@@ -37,10 +37,10 @@ const Faqs = () => {
   };
 
   return (
-    <section data-aos="fade-up" className="py-10 bg-white sm:py-16 lg:py-24">
+    <section data-aos="fade-up" className="py-10 bg-black sm:py-16 lg:py-24">
       <div className="px-4 mx-auto sm:px-6 lg:px-8 w-10/12">
         <div className="max-w-2xl mx-auto text-center">
-          <h2 className="text-3xl font-bold leading-tight text-[#27374D] sm:text-4xl lg:text-5xl">
+          <h2 className="text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl">
             Explore Common Questions
           </h2>
         </div>
@@ -48,7 +48,7 @@ const Faqs = () => {
           {faqData.map((faq, index) => (
             <div
               key={`question${index + 1}`}
-              className="bg-white border border-gray-200 shadow-lg rounded-md overflow-hidden transition-transform duration-300 transform hover:scale-105"
+              className="bg-white border border-white shadow-lg rounded-md overflow-hidden transition-transform duration-300 transform hover:scale-105"
             >
               <button
                 type="button"
@@ -64,7 +64,7 @@ const Faqs = () => {
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
-                  className="w-6 h-6 text-gray-400 transition-transform duration-200 transform"
+                  className="w-6 h-6 text-black transition-transform duration-200 transform"
                   style={{
                     transform:
                       questionStates[`question${index + 1}`] === 'open' ? 'rotate(180deg)' : 'rotate(0deg)',
@@ -85,10 +85,10 @@ const Faqs = () => {
             </div>
           ))}
         </div>
-        <p className="text-center text-gray-600 textbase mt-9">
+        <p className="text-center text-white textbase mt-9">
           Still have questions?
           <span className="cursor-pointer font-medium text-tertiary transition-all duration-200 hover:text-tertiary focus:text-tertiary hover:underline">
-            <Link to="/contact" className="text-neutral-600 dark:text-neutral-200">
+            <Link to="/contact" className="text-red-700 dark:text-red-700">
               Contact our support
             </Link>
           </span>

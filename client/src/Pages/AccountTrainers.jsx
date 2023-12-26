@@ -17,17 +17,17 @@ const AccountTrainers = () => {
   const history = useNavigate();
 
   // fetch products
-// useEffect(() => {
-//   axios
-//     .get("http://localhost:5000/user")
-//     .then((response) => {
-//       setUser(response.data);
-//       setPhotoPreview(response.data.profile_image_name);
-//     })
-//     .catch((error) => {
-//       console.error("Error fetching user data:", error);
-//     });
-// }, []);
+useEffect(() => {
+  axios
+    .get("http://localhost:5000/user")
+    .then((response) => {
+      setUser(response.data);
+      setPhotoPreview(response.data.profile_image_name);
+    })
+    .catch((error) => {
+      console.error("Error fetching user data:", error);
+    });
+}, []);
 
 
 function logout() {
@@ -52,9 +52,9 @@ function logout() {
   // to open and close sidebar //end
 
   return (
-    <div className="flex flex-wrap mt-24">
+    <div className="flex flex-wrap mt-24 bg-[#f5f5f5] ">
       {/* sidebar */}
-      <div className="relative w-[260px] h-full">
+      <div className=" w-[260px] h-full fixed ">
         <div
           className={`peer absolute top-0 border ${position} lg:left-0 h-full w-full object-cover transition-all delay-100 duration-1000`}
         >
@@ -115,60 +115,38 @@ function logout() {
               <line x1="6" y1="6" x2="18" y2="18"></line>
             </svg>
           </button>
-          <aside className="flex flex-col w-64 h-auto px-5 py-8 overflow-y-auto bg-white border-r rtl:border-r-0 rtl:border-l dark:bg-gray-900 dark:border-gray-700">
-            <div className="w-auto h-12 flex justify-around items-center mx-6">
-              <img
-                className={`rounded-full w-1/4 ${
-                  user.profile_image_name === null && "hidden"
-                } border`}
-                src={photoPreview}
-                alt="Profile Picture"
-              />
-              <svg
-                className={`"absolute w-12 h-12 text-gray-400 -left-1 rounded-full ${
-                  user.profile_image_name === null ? "block" : "hidden"
-                } border`}
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                  clip-rule="evenodd"
-                ></path>
-              </svg>
-              <h1 className="text-xl font-bold text-grey-600">
-                {user.first_name} {user.last_name}
-              </h1>
-            </div>
+          <aside className="flex flex-col w-64 h-screen px-5 py-8  bg-black border-r rtl:border-r-0 rtl:border-l dark:bg-gray-900 dark:border-gray-700">
+           
 
-            <br />
-            <hr />
-            <br />
 
             <div className="flex flex-col justify-between flex-1 mt-6">
               <nav className="-mx-3 space-y-6 ">
                 <div className="space-y-3 ">
-                  <label className="px-3 text-xs text-grey-700 uppercase dark:text-gray-400">
+                  <label className="px-3 duration-300 transform rounded-lg text-white uppercase dark:text-gray-400">
                     Manage Account
                   </label>
 
                   <button
-                    className="w-full flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
+                    className={`w-full flex items-center px-3 py-2 text-white transition-colors duration-300 transform rounded-lg dark:text-gray-200  ${
+                      page === "TProfile" && "bg-red-700 dark:bg-gray-800 dark:text-gray-200 text-gray-700"
+                    } hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700`}
                     onClick={() => setPage("TProfile")}
                   >
                     <span className="mx-2 text-sm font-medium">Profile</span>
                   </button>
                   <button
-                    className="w-full flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
+                    className={`w-full flex items-center px-3 py-2 text-white transition-colors duration-300 transform rounded-lg dark:text-gray-200  ${
+                      page === "Course" && "bg-red-700 dark:bg-gray-800 dark:text-gray-200 text-gray-700"
+                    } hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700`}
                     onClick={() => setPage("Course")}
                   >
                     <span className="mx-2 text-sm font-medium">Training plan</span>
                   </button>
 
                   <button
-                    className="w-full flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
+                    className={`w-full flex items-center px-3 py-2 text-white transition-colors duration-300 transform rounded-lg dark:text-gray-200  ${
+                      page === "Blog" && "bg-red-700 dark:bg-gray-800 dark:text-gray-200 text-gray-700"
+                    } hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700`}
                     onClick={() => setPage("Blog")}
                   >
                     <span className="mx-2 text-sm font-medium">Blogs</span>
@@ -181,7 +159,7 @@ function logout() {
 
                 <div className="space-y-3 ">
                   <button
-                    className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
+                    className="flex items-center px-3 py-2 text-white transition-colors duration-300 transform rounded-lg dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
                     onClick={logout}
                   >
                     <svg

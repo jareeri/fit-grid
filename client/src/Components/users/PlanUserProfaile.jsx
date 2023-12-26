@@ -94,8 +94,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { useCookies } from "react-cookie";
 
 const Course = () => {
+  const [cookie] = useCookies(["user_id"]);
   const [courses, setCourses] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const coursesPerPage = 6;
@@ -103,8 +105,8 @@ const Course = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:8080/getAllCourses");
-        setCourses(response.data);
+        const response = await axios.get("http://localhost:8080/subscribers/user");
+        setCourses(response.data.subscriptions);
       } catch (error) {
         console.error("Error fetching data: ", error);
       }
@@ -120,12 +122,12 @@ const Course = () => {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
-    <div className="ml-44 my-16">
-      <div className="flex flex-col items-center justify-center min-h-screen">
+    <div className="ml-10 lg:ml-44 my-10">
+      <div className="flex flex-col items-center justify-center min-h-screen ">
         <h1 className="text-[#27374D] text-4xl mb-6 font-bold text-center">My Courses</h1>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 mx-4 my-4 items-end justify-end">
+        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 items-end justify-end">
           {currentCourses.map((course) => (
-            <div key={course.id} className="bg-white rounded-md overflow-hidden shadow-lg w-[20rem]">
+            <div key={course.id} className="bg-white rounded-md overflow-hidden shadow-lg  sm:w-[100%] md:w-[98%] lg:w-[100%]">
               <Link to="#">
                 <img src={course.image} alt="" className="w-full h-40 object-cover" />
               </Link>
@@ -139,7 +141,7 @@ const Course = () => {
                   {course.description}
                 </p>
                 <Link
-                  to={`/course-details/${course.id}`}
+                  to={`/course-details/${cookie.user_id}`}
                   className="inline-block px-4 py-2 text-sm font-bold text-white bg-gray-800 rounded-full hover:bg-gray-700 focus:outline-none"
                 >
                   Read More

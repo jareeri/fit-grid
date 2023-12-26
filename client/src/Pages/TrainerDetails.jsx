@@ -28,38 +28,41 @@ const TrainerDetails = () => {
   }
 
   return (
-    <div className="container mx-auto my-24 p-4 md:p-8 bg-gray-800 text-white rounded-md shadow-md">
-      <div className="md:flex items-center justify-center mb-9">
-        <div className="md:shrink-0 ml-8">
+    <div className="p-8 bg-gray-100 mt-24 md:w-full rounded-md shadow-lg">
+      <div className="md:flex items-center justify-center mb-8 gap-20">
+        <div className="md:shrink-0 mr-6">
           <img
-            className="h-64 w-full object-cover md:h-full md:w-64 rounded-md border-4 border-gray-500"
+            className="h-[300px] w-[500px] object-cover md:h-full md:w-96 rounded-md border-4 shadow-lg"
             src={trainer.profileimage}
             alt={`Image of ${trainer.username}`}
           />
         </div>
-        <div className="md:ml-8 mt-4 md:mt-0">
-          <h2 className="text-4xl font-extrabold hover:underline text-gray-500">
-            Name: {trainer.username}
+        <div className="md:ml-6 mt-4 md:mt-0">
+          <h2 className="text-4xl font-extrabold text-red-700">
+            {trainer.username}
           </h2>
-          <div className="uppercase tracking-wide text-lg font-semibold mt-2">
+          <div className="uppercase tracking-wide text-lg font-semibold mt-2 text-gray-700">
             Certification: {trainer.certification}
           </div>
-          <p className="mt-2 text-gray-300 text-lg">
-            Experience: {trainer.experience}
+          <p className="mt-2 text-gray-700 text-lg">
+            Experience: {trainer.experience} years
           </p>
         </div>
       </div>
       <Pricing />
-      <div className="text-center py-2 mt-8">
+  
+      <div className="text-center ">
         <Link
           to="/trainers"
-          className="text-lg font-medium text-gray-500 hover:underline"
+          className="inline-block text-sm px-4 py-2 leading-none border rounded-md bg-red-700 text-white hover:bg-gray-800 transition-all duration-300"
         >
           &larr; Back to Trainers
         </Link>
       </div>
     </div>
   );
+  
+  
 };
 
 export default TrainerDetails;

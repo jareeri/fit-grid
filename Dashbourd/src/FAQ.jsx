@@ -7,7 +7,7 @@ const FAQ = () => {
 
   useEffect(() => {
     // Fetch FAQ data from your API using Axios
-    axios.get('http://localhost:3000/faqData')
+    axios.get('http://localhost:8080/faqs')
       .then(response => {
         // Update the state with the fetched data
         setFAQs(response.data);
@@ -19,7 +19,7 @@ const FAQ = () => {
 
   const handleSave = (faqData) => {
     // Send a request to update the FAQ data on the server
-    axios.put(`http://localhost:3000/faqData/${faqData.id}`, faqData)
+    axios.put(`http://localhost:8080/faqs/${faqData.id}`, faqData)
       .then(response => {
         // Handle success, e.g., show a success message
         console.log('FAQ data updated successfully:', response.data);
@@ -40,7 +40,7 @@ const FAQ = () => {
     setFAQs(prevFAQs => prevFAQs.filter(faq => faq.id !== faqId));
 
     // Send a request to delete the FAQ from the server
-    axios.delete(`http://localhost:3000/faqData/${faqId}`)
+    axios.delete(`http://localhost:8080/faqs/${faqId}`)
       .then(response => {
         // Handle success, e.g., show a success message
         console.log('FAQ deleted successfully:', response.data);
@@ -50,7 +50,7 @@ const FAQ = () => {
         console.error('Error deleting FAQ:', error);
 
         // Roll back the state if the request fails
-        axios.get('http://localhost:3000/faqData')
+        axios.get('http://localhost:8080/faqs')
           .then(response => {
             // Update the state with the fetched data
             setFAQs(response.data);
@@ -72,7 +72,7 @@ const FAQ = () => {
 
   const handleAdd = () => {
     // Send a request to add the new FAQ to the server
-    axios.post('http://localhost:3000/faqData', newFAQ)
+    axios.post('http://localhost:8080/faqs', newFAQ)
       .then(response => {
         // Handle success, e.g., show a success message
         console.log('New FAQ added successfully:', response.data);
@@ -90,13 +90,9 @@ const FAQ = () => {
   };
 
   return (
-    <div className="text-gray-900 bg-white w-full md:w-11/12 lg:w-3/4 xl:w-2/3 flex justify-end mt-44 ml-40">
-      <div className="p-4 flex justify-center">
-        {/* <h1 className="text-3xl font-bold mb-4">FAQ Management</h1> */}
-      </div>
-      <div className="px-3 py-4 flex justify-end">
-        <table className="w-full text-md bg-white shadow-md rounded mb-4">
-          <thead className="bg-[#9DB2BF] text-white">
+    <div className="p-4 flex justify-center mt-8 ml-36">
+      <table className="w-full sm:w-11/12 md:w-5/6 lg:w-4/5 xl:w-4/5 bg-white border border-gray-300">
+      <thead className="bg-red-700 text-white">
             <tr>
               <th className="py-2 px-4">Question</th>
               <th className="py-2 px-4">Answer</th>
@@ -107,7 +103,7 @@ const FAQ = () => {
             {faqs.map((faq, index) => (
               <tr
                 key={index}
-                className={`border-b hover:bg-gray-100 ${index % 2 === 0 ? 'bg-gray-50' : ''}`}
+                className={`border-b hover:bg-gray-100 ${index % 2 === 0 ? 'bg-white' : ''}`}
               >
                 <td className="py-2 px-4">
                   <input
@@ -175,7 +171,7 @@ const FAQ = () => {
           </tbody>
         </table>
       </div>
-    </div>
+
   );
 };
 

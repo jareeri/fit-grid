@@ -7,7 +7,7 @@ const Dietaryschedule = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/Nutrition');
+        const response = await axios.get('http://localhost:8080/getNutritionDataForUser');
         setNutritionData(response.data);
       } catch (error) {
         console.error('Error fetching nutrition data:', error);
@@ -35,7 +35,7 @@ const Dietaryschedule = () => {
                 <tr key={index} className={index % 2 === 0 ? 'bg-gray-200' : ''}>
                   <td className="py-2">{item.nutrient}</td>
                   <td className="py-2">{item.amount}</td>
-                  <td className="py-2">{item.dailyValue}</td>
+                  <td className="py-2">{item.daily_value}</td>
                 </tr>
               ))}
           </tbody>

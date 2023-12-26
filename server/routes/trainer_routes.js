@@ -7,7 +7,7 @@ const multer = require("multer");
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
-router.post("/upgradeusertotrainer", trainerController.upgradeusertotrainer);
+router.post("/upgradeusertotrainer", verifyToken.authenticateToken, trainerController.upgradeUserToTrainer);
 router.get("/getAllTrainers", trainerController.getAllTrainers);
 router.put(
   "/updateTrainer/:trainer_id",
@@ -16,6 +16,13 @@ router.put(
 );
 router.get("/getTrainerById/:trainer_id", trainerController.getTrainerById);
 // Update user profile, username, and trainer information
+
+router.get(
+  "/getTrainerByToken",
+  verifyToken.authenticateToken,
+  trainerController.getTrainerByToken
+);
+
 router.put(
   "/updateUserProfileAndTrainer",
   upload.single("image"),

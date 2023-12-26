@@ -7,7 +7,7 @@ const Trainingschedule = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/Workout');
+        const response = await axios.get('http://localhost:8080/workouts/api/User');
         setWorkoutData(response.data);
       } catch (error) {
         console.error('Error fetching workout data:', error);

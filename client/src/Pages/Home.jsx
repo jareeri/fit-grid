@@ -9,17 +9,22 @@ import Calculator from './Calculator'
 import BestTrainers from '../Components/Landing/BestTrainers'
 import Faqs from '../Components/Landing/Faqs'
 import Statestic from '../Components/Landing/Statestic'
+import JoinTeam from '../Components/Landing/JoinTeam'
+import AboutHome from '../Components/Landing/AboutHome'
 
 const Home = () => {
   return (
-    <div> 
+    <div className='bg-[#f5f5f5]'> 
       <Hero /> 
       <Statestic/>
+      <AboutHome/>
      <BestTrainers/>
       <Category />
-         <Calculator/>
       <Blogs/>
+         <Calculator/>
+   
  <Faqs/>
+ <JoinTeam/>
 
     </div>
   )

@@ -47,16 +47,18 @@ const BlogDetails = () => {
       <div className="max-w-3xl mx-auto">
         <div className="mt-3 bg-white rounded-b lg:rounded-b-none lg:rounded-r flex flex-col justify-between leading-normal">
           <div className="bg-white relative top-0 -mt-32 p-5 sm:p-10">
-            <h1 className="text-gray-900 font-bold text-3xl mb-2">{blog.title}</h1>
+            <h1 className="text-red-700 font-bold text-3xl mb-2">{blog.title}</h1>
             <p className="text-gray-700 text-xs mt-2">
-              Author:{" "}
-              <a
-                href="#"
-                className="text-indigo-600 font-medium hover:text-gray-900 transition duration-500 ease-in-out"
-              >
-                {blog.username}
-              </a>
-            </p>
+  <span className="inline-block">Author : </span>
+  <Link
+    to={`/trainers/${blog.user_id}`}  
+    className="text-red-700 font-medium text-md border-b border-red-700 hover:text-gray-900 transition duration-500 ease-in-out"
+  >
+    {blog.username}
+  </Link>
+</p>
+
+
             <div className="max-w-4xl mx-auto text-lg text-gray-700 mt-4 rounded text-start">
               <p className="mt-2 leading-relaxed">{blog.content}</p>
             </div>
@@ -67,14 +69,14 @@ const BlogDetails = () => {
       
       <br />
       <br />
-      <>
+      <div className="flex justify-center">
         <Link
-          to="/blogs"
-          className="inline-block text-sm px-4 py-2 leading-none border rounded-md text-gray-800 border-gray-800 hover:border-transparent hover:text-white hover:bg-gray-800"
+          to="/AllBlog"
+          className="inline-block text-sm px-4 py-2 leading-none border rounded-md bg-red-700 text-white border-red-700 hover:border-transparent hover:text-white hover:bg-gray-800"
         >
           &larr; Back to blogs
         </Link>
-      </>
+      </div>
       <br />
       <br />
     </div>

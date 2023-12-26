@@ -174,7 +174,7 @@ const stripePromise = loadStripe('pk_test_51OGMaCINwTlfmR0PZyo9YlqAB6mi7YaJwfnoF
 
 const Payment = () => {
   return (
-    <div className='mx-20 mt-20'>
+    <div className=''>
       {/* Styles for radio buttons and select inputs */}
       <style
         dangerouslySetInnerHTML={{
@@ -190,12 +190,12 @@ const Payment = () => {
       />
 
       {/* Payment form */}
-      <div className='min-w-screen min-h-screen bg-white flex items-center justify-center px-5 pb-10 pt-16 '>
+      <div className='min-w-screen min-h-screen bg-[#f5f5f5] flex items-center justify-center px-2 md:px-5 pb-10 pt-16'>
         <div
-          className='w-full mx-auto rounded-lg bg-gray-100 shadow-lg p-5 text-gray-700'
+          className='w-full mx-auto rounded-lg bg-white shadow-lg p-2 md:p-5 text-gray-700'
           style={{ maxWidth: 600 }}
         >
-         
+
           {/* Payment form elements */}
           <Elements stripe={stripePromise}>
             <ElementsConsumer>
@@ -211,4 +211,3 @@ const Payment = () => {
 };
 
 export default Payment;
-

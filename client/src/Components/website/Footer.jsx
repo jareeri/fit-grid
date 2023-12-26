@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import FitGrid from "../../Images/FitGrid.png";
+import fit from "../../Images/fit.png";
 
 const Footer = () => {
   const user = null;
@@ -11,65 +11,64 @@ const Footer = () => {
   }
 
   return (
-    <footer className="bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200">
-      <div className="container mx-auto py-10 flex flex-col md:flex-row items-center md:items-start">
-        {/* TW elements section */}
-        <div className="md:pr-8 flex flex-col items-center md:items-start">
-          <div>
-            <img className="h-20" src={FitGrid} alt="CraftVine Logo" />
-          </div>
-          <p className="mt-4 text-center md:text-left">
-            Your Home, Elevated. Discover modern and new furniture for a perfect blend of style and affordability.
+    <footer className="bg-black dark:bg-black text-white dark:text-white z-50">
+      <div className="container mx-auto py-10 flex flex-wrap items-center justify-around">
+        {/* Logo and description section */}
+        <div className="w-full md:w-1/2 lg:w-1/3 xl:w-1/4 pr-4 mb-8 md:mb-0">
+          <Link to="/" className="flex items-center ">
+            <img src={fit} className="mr-3 h-20" alt="CraftVine Logo" />
+          </Link>
+          <p className="text-center md:text-left">
+            
+Transform Your Body. Explore top-notch fitness gear for the perfect balance of style and affordability. 
           </p>
         </div>
-        {/* Products section */}
-        <div className="mt-8 md:mt-0">
-          <h6 className="mb-4 font-semibold text-gray-700 dark:text-gray-300">
-            Explore
-          </h6>
+        {/* Navigation sections */}
+        <div className="w-full md:w-1/2 lg:w-1/4 xl:w-1/6 mb-8 md:mb-0">
+          <h6 className="mb-4 font-semibold">Explore</h6>
           <p className="mb-4">
-            <Link to='/' className="text-gray-600 dark:text-gray-200 hover:text-gray-800 dark:hover:text-gray-300">
+            <Link to='/' className="hover:text-gray-300">
               Home
             </Link>
           </p>
           <p className="mb-4">
-            <Link to="/Trainers" className="text-gray-600 dark:text-gray-200 hover:text-gray-800 dark:hover:text-gray-300">
+            <Link to="/Trainers" className="hover:text-gray-300">
               Trainers
             </Link>
           </p>
         </div>
-        {/* Useful links section */}
-        <div className="mt-8 md:mt-0">
-          <h6 className="mb-4 font-semibold text-gray-700 dark:text-gray-300">
-            Useful links
-          </h6>
+        <div className="w-full md:w-1/2 lg:w-1/4 xl:w-1/6 mb-8 md:mb-0">
+          <h6 className="mb-4 font-semibold">Useful links</h6>
           <p className="mb-4">
-            <Link to={user !== null ? '/account' : '/login'} className="text-gray-600 dark:text-gray-200 hover:text-gray-800 dark:hover:text-gray-300">
+            <Link to={user !== null ? '/account' : '/login'} className="hover:text-gray-300">
               Account
             </Link>
           </p>
-        </div>
-        {/* Contact section */}
-        <div className="mt-8 md:mt-0">
-          <h6 className="mb-4 font-semibold text-gray-700 dark:text-gray-300">
-            About Us
-          </h6>
           <p className="mb-4">
-            <Link to="/contact" className="text-gray-600 dark:text-gray-200 hover:text-gray-800 dark:hover:text-gray-300">
+            <Link to="/Privacypolicypage" className="hover:text-gray-300">
+              Privacy policy
+            </Link>
+          </p>
+        </div>
+        <div className="w-full md:w-1/2 lg:w-1/4 xl:w-1/6 mb-8 md:mb-0">
+          <h6 className="mb-4 font-semibold">About Us</h6>
+          <p className="mb-4">
+            <Link to="/contact" className="hover:text-gray-300">
               Contact Us
+            </Link>
+          </p>
+          <p>
+            <Link to="/AboutUs" className="hover:text-gray-300">
+              About Us
             </Link>
           </p>
         </div>
       </div>
-
       {/* Copyright section */}
-      <div className="bg-gray-800 dark:bg-gray-700 py-6 text-center text-white">
+      <div className="bg-black dark:bg-black py-6 text-center text-white">
         <span>© 2023 Copyright:</span>
-        <Link
-          className="font-semibold ml-2 text-white hover:text-gray-300"
-          to='/'
-        >
-          MA GYM
+        <Link className="font-semibold ml-2 text-red-700 hover:text-red-500" to='/'>
+          FitGrid
         </Link>
       </div>
     </footer>

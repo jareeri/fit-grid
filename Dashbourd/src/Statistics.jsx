@@ -7,33 +7,32 @@ const Statistics = () => {
   const [blogCount, setBlogCount] = useState(0);
 
   useEffect(() => {
-    // Fetch statistics data using Axios
-    axios.get('http://localhost:3000/Corse')
+    axios.get('http://localhost:8080/plans/count')
       .then(response => setPlanCount(response.data.count))
       .catch(error => console.error('Error fetching plans:', error));
 
-    axios.get('http://localhost:3000/Users')
-      .then(response => setUserCount(response.data.count))
+    axios.get('http://localhost:8080/all_users')
+      .then(response => setUserCount(response.data.length))
       .catch(error => console.error('Error fetching users:', error));
 
-    axios.get('http://localhost:3000/Blog')
-      .then(response => setBlogCount(response.data.count))
+    axios.get('http://localhost:8080/getAllArticles')
+      .then(response => setBlogCount(response.data.length))
       .catch(error => console.error('Error fetching blogs:', error));
-  }, []); // Empty dependency array ensures the effect runs only once on component mount
+  }, []);
 
   return (
-    <div className="container mx-auto px-4 py-12 md:py-24 ml-80">
+    <div className="container mx-auto px-4 py-4 md:py-12 ml-60">
       <div className="flex flex-wrap text-center">
         {/* Plan Statistics */}
         <div className="p-4 md:w-1/2 lg:w-1/4">
-          <div className="border-2 border-gray-600 px-4 py-6 rounded-lg transform transition duration-500 hover:scale-110">
+          <div className="border-2 border-gray-200 px-4 py-6 rounded-lg transform transition duration-500 hover:scale-110 bg-white">
             <svg
               fill="none"
               stroke="currentColor"
               strokeLinecap="round"
               strokeLinejoin="round"
               strokeWidth={2}
-              className="text-indigo-500 w-12 h-12 mb-3 inline-block"
+              className="text-red-700 w-12 h-12 mb-3 inline-block"
               viewBox="0 0 24 24"
             >
               <path d="M8 17l4 4 4-4m-4-5v9" />
@@ -46,14 +45,14 @@ const Statistics = () => {
 
         {/* User Statistics */}
         <div className="p-4 md:w-1/2 lg:w-1/4">
-          <div className="border-2 border-gray-600 px-4 py-6 rounded-lg transform transition duration-500 hover:scale-110">
+          <div className="border-2 border-gray-200 px-4 py-6 rounded-lg transform transition duration-500 hover:scale-110 bg-white">
             <svg
               fill="none"
               stroke="currentColor"
               strokeLinecap="round"
               strokeLinejoin="round"
               strokeWidth={2}
-              className="text-indigo-500 w-12 h-12 mb-3 inline-block"
+              className="text-red-700 w-12 h-12 mb-3 inline-block"
               viewBox="0 0 24 24"
             >
               <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
@@ -67,14 +66,14 @@ const Statistics = () => {
 
         {/* Blog Statistics */}
         <div className="p-4 md:w-1/2 lg:w-1/4">
-          <div className="border-2 border-gray-600 px-4 py-6 rounded-lg transform transition duration-500 hover:scale-110">
+          <div className="border-2 border-gray-200 px-4 py-6 rounded-lg transform transition duration-500 hover:scale-110 bg-white">
             <svg
               fill="none"
               stroke="currentColor"
               strokeLinecap="round"
               strokeLinejoin="round"
               strokeWidth={2}
-              className="text-indigo-500 w-12 h-12 mb-3 inline-block"
+              className="text-red-700 w-12 h-12 mb-3 inline-block"
               viewBox="0 0 24 24"
             >
               <path d="M3 18v-6a9 9 0 0118 0v6" />

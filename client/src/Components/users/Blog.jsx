@@ -240,92 +240,101 @@ const Blog = () => {
     setUpdateBlogData(null);
     setShowPopup(true);
   };
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
 
   return (
-    <div className="ml-44 my-16">
+    <div className="ml-10 lg:ml-44 my-10">
       <div className="flex flex-col items-center justify-center min-h-screen ">
         <h1 className="text-gray-800 text-4xl mb-6 font-bold text-center">My Blog</h1>
         {/* Display delete confirmation message */}
         {deleteMessage && <p className="text-green-500">{deleteMessage}</p>}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 mx-4 my-4 items-end justify-end ">
-          {currentBlogs.map((blog) => (
-            blog.isdeleted !== 'true' && (
-              <div key={blog.id} className="bg-white rounded-md overflow-hidden shadow-lg w-[20rem]">
-                <Link to="#">
-                  <img src={blog.articles_image} alt="" className="w-full h-40 object-cover" />
-                </Link>
-                <div className="p-4 w-[20rem]">
-                  <Link to="#">
-                    <h5 className="w-[20rem] mb-2 text-xl font-bold text-gray-900 dark:text-white">
-                      {blog.title}
-                    </h5>
-                  </Link>
-                  <p className="w-[20rem] mb-3 text-sm text-gray-700 dark:text-gray-400">
-                    {blog.content}
-                  </p>
-                  <p className="w-[20rem] mb-3 text-sm text-gray-700 dark:text-gray-400">
-                    Published by: {blog.username}
-                  </p>
-                  <p className="w-[20rem] mb-3 text-sm text-gray-700 dark:text-gray-400">
-                    Published at: {blog.published_at}
-                  </p>
-                  <Link
-                    to={`/blog-details/${blog.id}`}
-                    className="inline-block px-4 py-2 text-sm font-bold text-white bg-gray-800 rounded-full hover:bg-gray-700 focus:outline-none"
-                  >
-                    Read More
-                  </Link>
+        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 items-end justify-end">
+  {currentBlogs.map((blog) => (
+    blog.isdeleted !== 'true' && (
+      <div key={blog.id} className="bg-white rounded-md overflow-hidden shadow-lg  sm:w-[100%] md:w-[98%] lg:w-[100%]">
+        <Link to="#">
+          <img src={blog.articles_image} alt="" className="w-full h-40 object-cover" />
+        </Link>
+        <div className="p-4">
+          <Link to="#">
+            <h5 className="mb-2 text-xl font-bold text-gray-900 dark:text-white">
+              {blog.title}
+            </h5>
+          </Link>
+          <p className="mb-3 text-sm text-gray-700 dark:text-gray-400">
+            {blog.content}
+          </p>
+          <p className="mb-3 text-sm text-gray-700 dark:text-gray-400">
+            Published by: {blog.username}
+          </p>
+          <p className="mb-3 text-sm text-gray-700 dark:text-gray-400">
+            Published at: {blog.published_at}
+          </p>
+          <Link
+  to={`/blog-details/${blog.id}`}
+  className="inline-block px-3 py-2 text-xs lg:text-xs md:text-xs font-bold text-white bg-gray-800 rounded-full hover:bg-gray-700 focus:outline-none"
+>
+  Read More
+</Link>
 
-                  <button
-                    onClick={() => handleUpdate(blog.id)}
-                    className="inline-block px-4 py-2 text-sm font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700 focus:outline-none ml-2"
-                  >
-                    Update
-                  </button>
+<button
+  onClick={() => handleUpdate(blog.id)}
+  className="inline-block px-3 py-2 text-xs lg:text-xs md:text-xs  font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700 focus:outline-none ml-2"
+>
+  Update
+</button>
 
-                  <button
-                    onClick={() => handleDelete(blog.id)}
-                    className="inline-block px-4 py-2 text-sm font-bold text-white bg-red-500 rounded-full hover:bg-red-700 focus:outline-none ml-2"
-                  >
-                    Delete
-                  </button>
-                </div>
-              </div>
-            )
-          ))}
+<button
+  onClick={() => handleDelete(blog.id)}
+  className="inline-block px-3 py-2 text-xs lg:text-xs md:text-xs font-bold text-white bg-red-500 rounded-full hover:bg-red-700 focus:outline-none ml-2"
+>
+  Delete
+</button>
+
+        
         </div>
-        <div className="col-span-full flex justify-center mt-4">
+      </div>
+    )
+  ))}
+</div>
+
+<div className="flex justify-center mt-8">
+        <button
+          className={`mx-2 p-2 bg-black text-white hover:bg-red-700 focus:outline-none rounded-md ${
+            currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''
+          }`}
+          onClick={() => handlePageChange(currentPage - 1)}
+          disabled={currentPage === 1}
+        >
+          Prev
+        </button>
+        {Array.from({ length: totalPages }).map((_, index) => (
           <button
-            className="mx-2 p-2 bg-gray-800 text-white hover:bg-gray-700 focus:outline-none rounded-full"
-            onClick={() => paginate(currentPage - 1)}
-            disabled={currentPage === 1}
+            key={index + 1}
+            onClick={() => handlePageChange(index + 1)}
+            className={`mx-2 p-2 bg-red-700 text-white hover:bg-black focus:outline-none rounded-md ${
+              currentPage === index + 1 ? 'bg-gray-800' : ''
+            }`}
           >
-            Prev
+            {index + 1}
           </button>
-          {Array.from({ length: totalPages }, (_, index) => index + 1).map((number) => (
-            <button
-              key={number}
-              onClick={() => paginate(number)}
-              className={`mx-2 p-2 bg-gray-800 text-white hover:bg-gray-700 focus:outline-none rounded-full ${
-                currentPage === number ? "bg-gray-800" : ""
-              }`}
-              style={{ width: "40px", height: "40px", borderRadius: "50%" }}
-            >
-              {number}
-            </button>
-          ))}
-          <button
-            className="mx-2 p-2 bg-gray-800 text-white hover:bg-gray-700 focus:outline-none rounded-full"
-            onClick={() => paginate(currentPage + 1)}
-            disabled={currentPage === totalPages}
-          >
-            Next
-          </button>
-        </div>
+        ))}
+        <button
+          className={`mx-2 p-2 bg-black text-white hover:bg-red-700 focus:outline-none rounded-md ${
+            currentPage === totalPages ? 'opacity-50 cursor-not-allowed' : ''
+          }`}
+          onClick={() => handlePageChange(currentPage + 1)}
+          disabled={currentPage === totalPages}
+        >
+          Next
+        </button>
+      </div>
 
         {/* Add Button to Trigger Popup */}
         <button
-          className="fixed bottom-8 right-8 p-4 bg-gray-900 text-white rounded-full hover:bg-gray-600 focus:outline-none"
+          className="fixed bottom-8 right-8 p-4 bg-red-700 text-white rounded-full hover:bg-red-600 focus:outline-none"
           onClick={handleAdd}
         >
           Add Blog
@@ -333,8 +342,9 @@ const Blog = () => {
 
         {/* Popup */}
         {showPopup && (
-          <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-            <div className="bg-white p-8 rounded-md shadow-lg">
+          <div className="fixed inset-0 flex items-center justify-center">
+          <div className="absolute inset-0 bg-gray-800 bg-opacity-50"></div>
+          <div className="z-10 w-full max-w-md mx-auto mt-8 p-4 bg-white rounded-md shadow-lg relative">
               {/* Display the content of BlogForm or UpdateBlogForm based on updateBlogData */}
               {updateBlogData ? (
                 <UpdateBlog
@@ -347,7 +357,7 @@ const Blog = () => {
 
               {/* Add a close button */}
               <button
-                className="p-3 bg-red-500 text-white rounded-full hover:bg-red-700 focus:outline-none mt-4"
+                className="p-3 bg-red-500 text-white rounded-full hover:bg-red-700 focus:outline-none mx-auto block"
                 onClick={() => setShowPopup(false)}
               >
                 Close

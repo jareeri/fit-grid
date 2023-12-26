@@ -289,7 +289,7 @@
     {
       "id": 2,
       "email": "Mohammad@gmail.com",
-      "message": "Goodp,.",
+      "message": "Goodlmkp,.",
       "name": "Mohdgdfammad"
     },
     {
@@ -322,7 +322,8 @@
       "email": "hind@gmai.com",
       "password": "Hind123$",
       "id": 6,
-      "name": "11111"
+      "name": "11111",
+      "role": "trainer"
     },
     {
       "email": "Mutaz.123@gmail.com",
@@ -427,11 +428,16 @@
     },
     {
       "id": 6,
-      "blog_auter": "mutaz",
-      "blog_img": "https://media.istockphoto.com/id/675179390/photo/muscular-trainer-writing-on-clipboard.jpg?s=612x612&w=0&k=20&c=9NKx1AwVMpPY0YBlk5H-hxx2vJSCu1Wc78BKRM9wFq0=",
-      "blog_title": "Lorem ipsum dolor sit amet consectetur",
-      "blog_subdescription": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur molestiae commodi cumque doloribus, labore consequuntur voluptas? ",
-      "blog_description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Blanditiis eveniet impedit laudantium magni ut explicabo eum, obcaecati vero illum commodi facilis pariatur fugit perferendis suscipit omnis rerum ad esse quisquam."
+      "trainer_id": 11,
+      "title": "abc",
+      "content": "abcde",
+      "published_at": "2023-11-22T09:55:16.998Z",
+      "deleted": false,
+      "articles_image": {},
+      "user_id": 11,
+      "certification": "my name is",
+      "experience": "2 years",
+      "rating": "4.0"
     }
   ],
   "Regestart": [
@@ -457,14 +463,6 @@
   ],
   "Corse": [
     {
-      "Course_Name": "sxecee",
-      "Course_Category": "Grossfit",
-      "Course_Duration": "333",
-      "Pricing": "32",
-      "Course_description": "ce",
-      "id": 3
-    },
-    {
       "Course_Name": "rgef",
       "Course_Category": "Grossfit",
       "Course_Duration": "333",
@@ -495,14 +493,6 @@
       "Pricing": "32",
       "Course_description": "rf",
       "id": 4
-    },
-    {
-      "Course_Name": "xdgvbfxdb",
-      "Course_Category": "Grossfit",
-      "Course_Duration": "122",
-      "Pricing": "222",
-      "Course_description": "sdgfxdgb",
-      "id": 5
     },
     {
       "Course_Name": "11111",
@@ -567,14 +557,6 @@
       "Pricing": "4444",
       "Course_description": "231e",
       "id": 13
-    },
-    {
-      "Course_Name": "11111",
-      "Course_Category": "Cardio",
-      "Course_Duration": "22222",
-      "Pricing": "4444",
-      "Course_description": "231e",
-      "id": 14
     }
   ],
   "category": [
@@ -602,6 +584,16 @@
       "id": 5,
       "image": "https://i.insider.com/5c5ae009342cca01c71cf984?width=1136&format=jpeg",
       "category": "kickboxing"
+    }
+  ],
+  "Join": [
+    {
+      "id": 1,
+      "username": "mutaz",
+      "phone": "0786372889",
+      "City": "Zarqa",
+      "erea": "gg",
+      "area": "kin;"
     }
   ]
 }

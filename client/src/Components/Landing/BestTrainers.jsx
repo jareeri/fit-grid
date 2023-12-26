@@ -21,43 +21,47 @@ const BestTrainers = () => {
     fetchTrainers();
   }, []);
 
-  // Check if trainers is an array before using slice
   const firstFourTrainers = Array.isArray(trainers) ? trainers.slice(0, 4) : [];
 
   return (
-    
-    <div data-aos="fade-up" className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20 mt-24 ">
-      <h1 className="text-black text-4xl mb-6 font-bold text-center">Best Trainers</h1>
-      <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
-        {firstFourTrainers.map((trainer) => (
-          <div key={trainer.trainer_id} className="group">
-            <Link to={`/trainers/${trainer.username}`}>
-              <div className="relative overflow-hidden rounded-lg shadow-xl border-2  transition duration-300 transform hover:-translate-y-2 hover:shadow-2xl">
-                <img
-                  className="object-cover w-full h-56 md:h-64 xl:h-80 rounded-t-lg"
-                  src={trainer.profileimage}
-                  alt="Person"
-                />
-                <div className="absolute inset-0 flex flex-col justify-center px-5 py-4 text-center transition-opacity duration-300 bg-[#ebebeb] bg-opacity-90 opacity-0 group-hover:opacity-100">
-                  <p className="mb-1 text-lg font-bold text-[#9DB2BF] group-hover:text-white">
-                    {trainer.username}
-                  </p>
-                  <p className="mb-1 text-xs text-[#6B7280] group-hover:text-white">
-                    Certification: {trainer.certification}
-                  </p>
-                  <p className="mb-1 text-xs text-[#6B7280] group-hover:text-white">
-                    Experience: {trainer.experience} years
-                  </p>
-                  {/* <p className="mb-4 text-xs text-[#6B7280] group-hover:text-white">
-                    Rating: {trainer.rating}
-                  </p> */}
+    <section
+      data-aos="fade-up"
+      className="bg-black text-white py-20"
+    >
+      <div className="container mx-auto">
+        <h1 className="text-4xl font-bold text-center mb-12">Meet Our Top Trainers</h1>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mx-10">
+          {firstFourTrainers.map((trainer) => (
+            <div key={trainer.trainer_id} className="group">
+              <Link to={`/trainers/${trainer.user_id}`}>
+                <div className="relative overflow-hidden rounded-lg shadow-xl border-2 transition duration-300 transform hover:-translate-y-2 hover:shadow-2xl">
+                  <img
+                    className="object-cover w-full h-56 md:h-64 xl:h-80 rounded-t-lg"
+                    src={trainer.profileimage}
+                    alt="Trainer"
+                  />
+                  <div className="absolute inset-0 flex flex-col justify-center px-6 py-4 text-center transition-opacity duration-300 bg-[#f5f5f5] bg-opacity-80 opacity-0 group-hover:opacity-100">
+                    <p className="mb-1 text-lg font-semibold text-red-700 group-hover:text-bg-black">
+                      {trainer.username}
+                    </p>
+                    <p className="mb-1 text-sm text-red-700 group-hover:text-black">
+                      Certification: {trainer.certification}
+                    </p>
+                    <p className="mb-1 text-sm text-red-700 group-hover:text-black">
+                      Experience: {trainer.experience} years
+                    </p>
+                    {/* You can uncomment the following lines if you have a 'rating' property in your trainer object */}
+                    {/* <p className="mb-4 text-xs text-gray-300 group-hover:text-gray-400">
+                      Rating: {trainer.rating}
+                    </p> */}
+                  </div>
                 </div>
-              </div>
-            </Link>
-          </div>
-        ))}
+              </Link>
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 

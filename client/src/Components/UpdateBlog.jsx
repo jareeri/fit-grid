@@ -50,9 +50,10 @@ const UpdateBlog = ({ onClose, blogData }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="">
+      <h2 className="text-2xl font-semibold mb-4 text-red-700 text-center col-span-2">Update Blog</h2>
       <div className="mb-4">
-        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="title">
+        <label className="block text-gray-700 text-xs font-bold mb-1" htmlFor="title">
           Blog Title
         </label>
         <input
@@ -61,11 +62,11 @@ const UpdateBlog = ({ onClose, blogData }) => {
           name="title"
           value={formData.title}
           onChange={handleChange}
-          className="w-full p-2 border rounded"
+          className="w-full p-1 border rounded text-xs"
         />
       </div>
       <div className="mb-4">
-        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="image">
+        <label className="block text-gray-700 text-xs font-bold mb-1" htmlFor="image">
           Blog Image
         </label>
         <input
@@ -74,11 +75,11 @@ const UpdateBlog = ({ onClose, blogData }) => {
           name="image"
           accept="image/*"
           onChange={handleChange}
-          className="w-full p-2 border rounded"
+          className="w-full p-1 border rounded text-xs"
         />
       </div>
       <div className="mb-4">
-        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="content">
+        <label className="block text-gray-700 text-xs font-bold mb-1" htmlFor="content">
           Blog Content
         </label>
         <textarea
@@ -86,13 +87,13 @@ const UpdateBlog = ({ onClose, blogData }) => {
           name="content"
           value={formData.content}
           onChange={handleChange}
-          className="w-full p-2 border rounded"
+          className="w-full p-1 border rounded text-xs"
         />
       </div>
       <div className="flex justify-end">
         <button
           type="submit"
-          className="bg-blue-600 text-white hover:bg-blue-800 p-2 rounded-md mt-4 cursor-pointer mx-auto block"
+          className="bg-black text-white hover:bg-gray-800 p-2 rounded-md mt-4 cursor-pointer mx-auto block w-30 h-10 mb-4"
         >
           Update Blog
         </button>

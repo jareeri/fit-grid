@@ -21,7 +21,7 @@ const Dietaryschedule = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:8080/getNutritionDataForUser"
+        `http://localhost:8080/getNutritionDataForUserByTrainerId/${courseId}`
       );
       setNutritionData(response.data);
     } catch (error) {
@@ -103,9 +103,9 @@ const Dietaryschedule = () => {
   };
 
   return (
-    <div className="bg-gray-100 rounded-lg overflow-hidden shadow-lg mx-auto my-8 max-w-screen-md">
+    <div className="bg-white rounded-lg overflow-hidden shadow-lg mx-auto my-8 max-w-screen-md">
       <div className="p-6">
-        <h2 className="text-3xl font-semibold mb-4 text-gray-800">
+        <h2 className="text-3xl font-semibold mb-4 text-red-700">
           Bodybuilder's Nutrition Facts
         </h2>
         <table className="w-full text-left">

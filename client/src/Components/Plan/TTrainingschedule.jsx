@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useParams } from 'react-router';
 
 const Trainingschedule = () => {
   const [workoutData, setWorkoutData] = useState([]);
@@ -8,9 +9,10 @@ const Trainingschedule = () => {
     repetitions: '',
     rest: '',
   });
+  const { courseId } = useParams();
 
   useEffect(() => {
-    axios.get('http://localhost:3000/Workout')
+    axios.get(`http://localhost:8080/workouts/forTrainerAndUser/${courseId}`)
       .then(response => {
         setWorkoutData(response.data);
       })
@@ -20,9 +22,9 @@ const Trainingschedule = () => {
   }, []);
 
   const handleSave = (exerciseData) => {
-    axios.put(`http://localhost:3000/Workout/${exerciseData.id}`, exerciseData)
+    axios.put(`http://localhost:8080/workouts/${exerciseData.id}/${courseId}`, exerciseData)
       .then(response => {
-        console.log('Exercise data updated successfully:', response.data);
+        // console.log('Exercise data updated successfully:', response.data);
         setWorkoutData(prevWorkoutData =>
           prevWorkoutData.map(exercise =>
             exercise.id === exerciseData.id ? { ...exercise, ...exerciseData } : exercise
@@ -35,11 +37,12 @@ const Trainingschedule = () => {
   };
 
   const handleDelete = (exerciseId) => {
+    // console.log("abc",exerciseId);
     setWorkoutData(prevWorkoutData =>
       prevWorkoutData.filter(exercise => exercise.id !== exerciseId)
     );
 
-    axios.delete(`http://localhost:3000/Workout/${exerciseId}`)
+    axios.delete(`http://localhost:8080/workouts/${exerciseId}`)
       .then(response => {
         console.log('Exercise deleted successfully:', response.data);
       })
@@ -56,8 +59,8 @@ const Trainingschedule = () => {
     );
   };
 
-  const handleAddExercise = () => {
-    axios.post('http://localhost:3000/Workout', newExercise)
+  const handleAddExercise = (user_id) => {
+    axios.post(`http://localhost:8080/workouts/${courseId}`, newExercise)
       .then(response => {
         console.log('Exercise added successfully:', response.data);
         setWorkoutData(prevWorkoutData => [...prevWorkoutData, response.data]);
@@ -73,9 +76,9 @@ const Trainingschedule = () => {
   };
 
   return (
-    <div className="bg-gray-100 rounded-lg overflow-hidden shadow-lg mx-auto my-8 max-w-screen-md">
+    <div className="bg-white rounded-lg overflow-hidden shadow-lg mx-auto my-8 max-w-screen-md flex justify-end items-center ">
       <div className="p-6 ">
-      <h2 className="text-3xl font-semibold mb-4 text-gray-800">Bodybuilder's Nutrition Facts</h2>
+      <h2 className="text-3xl font-semibold mb-4 text-red-700">Bodybuilder's Nutrition Facts</h2>
         <table className="w-full text-left">
           <thead>
             <tr className="border-b">

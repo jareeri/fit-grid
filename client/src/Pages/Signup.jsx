@@ -142,7 +142,7 @@ function Register() {
             <label htmlFor="showPassword">Show Password</label>
           </div>
           <button
-            className={`w-full p-3 bg-gradient-to-r from-pink-500 to-red-500 text-white rounded-md mt-4 hover:opacity-90 ${
+            className={`w-full p-3 bg-gradient-to-r from-red-700 to-red-600 text-white rounded-md mt-4 hover:opacity-90 ${
               loading && 'opacity-50 cursor-not-allowed'
             }`}
             onClick={handleSignUp}
@@ -155,7 +155,7 @@ function Register() {
             Already have an account?{' '}
             <a
               href="/login"
-              className="font-semibold text-indigo-500 hover:underline focus:text-indigo-800 focus:outline-none"
+              className="font-semibold text-red-700 hover:underline focus:text-red-800 focus:outline-none"
             >
               Log in
             </a>

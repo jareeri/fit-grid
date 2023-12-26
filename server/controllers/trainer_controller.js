@@ -16,42 +16,6 @@ app.use(bodyParser.json()); // Enable JSON request body parsing
 const bcrypt = require("bcrypt");
 const { authenticate } = require("passport");
 
-// Route to upgrade a user to a trainer
-exports.upgradeusertotrainer = async (req, res) => {
-  try {
-    const { user_id, certification, experience } = req.body;
-
-    if (!user_id || !certification || !experience) {
-      return res.status(400).json({ message: "Missing required fields" });
-    }
-
-    const insertTrainerQuery = `
-        INSERT INTO trainers (user_id, certification, experience)
-        VALUES ($1, $2, $3)`;
-
-    const insertValues = [user_id, certification, experience];
-
-    await db.query(insertTrainerQuery, insertValues);
-
-    // Change the user's role to 'trainer' in the users table
-    const updateRoleQuery = `
-        UPDATE users
-        SET userrole = 'trainer'
-        WHERE user_id = $1`;
-
-    const updateValues = [user_id];
-
-    await db.query(updateRoleQuery, updateValues);
-
-    res
-      .status(201)
-      .json({ message: "User upgraded to a trainer successfully" });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Internal Server Error" });
-  }
-};
-
 // Retrieve all trainers
 exports.getAllTrainers = async (req, res) => {
   try {
@@ -142,7 +106,37 @@ exports.getTrainerById = async (req, res) => {
   }
 };
 
-// Update user profile and trainer information
+// Get the trainer data by user ID from token
+exports.getTrainerByToken = async (req, res) => {
+  try {
+    // Extract user ID from the token
+    const userId = req.user.user.Id;
+    
+    const query = `
+      SELECT *
+      FROM trainers
+      INNER JOIN users ON users.user_id = trainers.user_id
+      INNER JOIN profile_user ON profile_user.user_id = users.user_id
+      WHERE trainers.user_id = $1;
+    `;
+
+    const values = [userId];
+
+    const result = await db.query(query, values);
+    // console.log(result.rows);
+
+    if (result.rows.length === 1) {
+      res.status(200).json(result.rows[0]);
+    } else {
+      res.status(404).json({ message: "Trainer not found" });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
+// Update user profile, username, and trainer information
 exports.updateUserProfileAndTrainer = async (req, res) => {
   try {
     const userId = req.user.user.Id;
@@ -154,118 +148,61 @@ exports.updateUserProfileAndTrainer = async (req, res) => {
     await db.query("BEGIN");
 
     try {
-      // Check if a profile exists for the user
-      const existingProfileQuery = `
-        SELECT * FROM profile_user WHERE user_id = $1`;
+      let fileUrl = null;
 
-      const existingProfileValues = [userId];
+      // Check if a file is provided in the request
+      if (file) {
+        const fileName = `${Date.now()}_${file.originalname}`;
+        fileUrl = await firebaseMiddleware.uploadFileToFirebase(file, fileName);
+      }
 
-      const existingProfileResult = await db.query(
-        existingProfileQuery,
-        existingProfileValues
+      // Update profile_user table
+      const updateProfileQuery = `
+        UPDATE profile_user
+        SET bio = $1, location = $2, website = $3
+        ${file ? ", profileimage = $4" : ""}
+        WHERE user_id = $${file ? "5" : "4"}
+        RETURNING *`;
+
+      const updateProfileValues = [bio, location, website];
+      if (file) {
+        updateProfileValues.push(fileUrl);
+      }
+      updateProfileValues.push(userId);
+
+      const updatedProfileResult = await db.query(
+        updateProfileQuery,
+        updateProfileValues
       );
 
-      if (existingProfileResult.rows.length > 0) {
-        // If a profile already exists, update it
-        const existingProfile = existingProfileResult.rows[0];
+      // Update users table
+      const updateUserQuery = `
+        UPDATE users
+        SET username = $1
+        WHERE user_id = $2`;
 
-        const fileName = `${Date.now()}_${file.originalname}`;
-        const fileUrl = await firebaseMiddleware.uploadFileToFirebase(
-          file,
-          fileName
-        );
+      const updateUserValues = [username, userId];
 
-        const updateProfileQuery = `
-          UPDATE profile_user
-          SET bio = $1, location = $2, website = $3, profileimage = $4
-          WHERE user_id = $5
-          RETURNING *`;
+      await db.query(updateUserQuery, updateUserValues);
 
-        const updateProfileValues = [bio, location, website, fileUrl, userId];
+      // Update trainers table
+      const updateTrainerQuery = `
+        UPDATE trainers
+        SET certification = $1, experience = $2
+        WHERE user_id = $3`;
 
-        const updatedProfileResult = await db.query(
-          updateProfileQuery,
-          updateProfileValues
-        );
+      const updateTrainerValues = [certification, experience, userId];
 
-        // Update users table
-        const updateUserQuery = `
-          UPDATE users
-          SET username = $1
-          WHERE user_id = $2`;
+      await db.query(updateTrainerQuery, updateTrainerValues);
 
-        const updateUserValues = [username, userId];
+      // Commit the transaction
+      await db.query("COMMIT");
 
-        await db.query(updateUserQuery, updateUserValues);
-
-        // Update trainers table
-        const updateTrainerQuery = `
-          UPDATE trainers
-          SET certification = $1, experience = $2
-          WHERE user_id = $3`;
-
-        const updateTrainerValues = [certification, experience, userId];
-
-        await db.query(updateTrainerQuery, updateTrainerValues);
-
-        // Commit the transaction
-        await db.query("COMMIT");
-
-        res.status(200).json({
-          message:
-            "User profile, username, and trainer information updated successfully",
-          userprofile: updatedProfileResult.rows[0],
-        });
-      } else {
-        // If no profile exists, create a new one
-        const fileName = `${Date.now()}_${file.originalname}`;
-        const fileUrl = await firebaseMiddleware.uploadFileToFirebase(
-          file,
-          fileName
-        );
-
-        const insertProfileQuery = `
-          INSERT INTO profile_user
-          (bio, location, website, profileimage, user_id)
-          VALUES ($1, $2, $3, $4, $5)
-          RETURNING *`;
-
-        const insertProfileValues = [bio, location, website, fileUrl, userId];
-
-        const insertedProfileResult = await db.query(
-          insertProfileQuery,
-          insertProfileValues
-        );
-
-        // Update users table
-        const updateUserQuery = `
-          UPDATE users
-          SET username = $1
-          WHERE user_id = $2`;
-
-        const updateUserValues = [username, userId];
-
-        await db.query(updateUserQuery, updateUserValues);
-
-        // Update trainers table
-        const updateTrainerQuery = `
-          UPDATE trainers
-          SET certification = $1, experience = $2
-          WHERE user_id = $3`;
-
-        const updateTrainerValues = [certification, experience, userId];
-
-        await db.query(updateTrainerQuery, updateTrainerValues);
-
-        // Commit the transaction
-        await db.query("COMMIT");
-
-        res.status(200).json({
-          message:
-            "New user profile, username, and trainer information created successfully",
-          userprofile: insertedProfileResult.rows[0],
-        });
-      }
+      res.status(200).json({
+        message:
+          "User profile, username, and trainer information updated successfully",
+        userprofile: updatedProfileResult.rows[0],
+      });
     } catch (error) {
       // Rollback the transaction in case of an error
       await db.query("ROLLBACK");
@@ -289,3 +226,57 @@ exports.updateUserProfileAndTrainer = async (req, res) => {
       });
   }
 };
+
+// Route to upgrade a user to a trainer
+exports.upgradeUserToTrainer = async (req, res) => {
+  try {
+    const { user_id, username } = req.body;
+
+    if (!(user_id || username)) {
+      return res.status(400).json({ message: "Missing required fields" });
+    }
+
+    // Determine the user_id based on user_id or username
+    let userIdToUse;
+    if (user_id) {
+      userIdToUse = user_id;
+    } else {
+      // Retrieve user_id based on username
+      const getUserIdQuery = 'SELECT user_id FROM users WHERE username = $1';
+      const getUserIdValues = [username];
+      const getUserIdResult = await db.query(getUserIdQuery, getUserIdValues);
+
+      if (getUserIdResult.rows.length === 0) {
+        return res.status(404).json({ message: "User not found" });
+      }
+
+      userIdToUse = getUserIdResult.rows[0].user_id;
+    }
+
+    const insertTrainerQuery = `
+        INSERT INTO trainers (user_id, certification, experience)
+        VALUES ($1, null, null)`;
+
+    const insertValues = [userIdToUse];
+
+    await db.query(insertTrainerQuery, insertValues);
+
+    // Change the user's role to 'trainer' only if user_id or username is provided
+    if (user_id || username) {
+      const updateRoleQuery = `
+          UPDATE users
+          SET userrole = 'trainer'
+          WHERE user_id = $1`;
+
+      const updateValues = [userIdToUse];
+
+      await db.query(updateRoleQuery, updateValues);
+    }
+
+    res.status(201).json({ message: "User upgraded to a trainer successfully" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+

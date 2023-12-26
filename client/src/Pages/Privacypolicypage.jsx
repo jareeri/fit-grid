@@ -3,21 +3,21 @@ import React from 'react'
 const Privacypolicypage = () => {
   return (
     <div>
-      <div className="bg-gray-100">
+      <div className="bg-[#f5f5f5] mt-24">
   <div className="container mx-auto px-4 py-8">
-    <h1 className="text-3xl font-bold mb-4">Privacy Policy</h1>
+    <h1 className="text-3xl font-bold mb-4 text-red-700">Privacy Policy</h1>
     <p className="mb-4">
       This privacy policy sets out how our website uses and protects any
       information that you give us when you use this website.
     </p>
-    <h2 className="text-2xl font-bold mb-2">Information We Collect</h2>
+    <h2 className="text-2xl font-bold mb-2 text-red-700">Information We Collect</h2>
     <p className="mb-4">We may collect the following information:</p>
     <ul className="list-disc list-inside mb-4">
       <li>Your name and contact information</li>
       <li>Demographic information</li>
       <li>Other information relevant to customer surveys and/or offers</li>
     </ul>
-    <h2 className="text-2xl font-bold mb-2">How We Use the Information</h2>
+    <h2 className="text-2xl font-bold mb-2 text-red-700">How We Use the Information</h2>
     <p className="mb-4">
       We require this information to understand your needs and provide you with
       a better service, and in particular for the following reasons:
@@ -36,14 +36,14 @@ const Privacypolicypage = () => {
         interests.
       </li>
     </ul>
-    <h2 className="text-2xl font-bold mb-2">Security</h2>
+    <h2 className="text-2xl font-bold mb-2 text-red-700">Security</h2>
     <p className="mb-4">
       We are committed to ensuring that your information is secure. In order to
       prevent unauthorized access or disclosure, we have put in place suitable
       physical, electronic, and managerial procedures to safeguard and secure
       the information we collect online.
     </p>
-    <h2 className="text-2xl font-bold mb-2">Cookies</h2>
+    <h2 className="text-2xl font-bold mb-2 text-red-700">Cookies</h2>
     <p className="mb-4">
       A cookie is a small file that asks permission to be placed on your
       computer's hard drive. Once you agree, the file is added, and the cookie
@@ -58,7 +58,7 @@ const Privacypolicypage = () => {
       no way gives us access to your computer or any information about you,
       other than the data you choose to share with us.
     </p>
-    <h2 className="text-2xl font-bold mb-2">Links to Other Websites</h2>
+    <h2 className="text-2xl font-bold mb-2 text-red-700">Links to Other Websites</h2>
     <p className="mb-4">
       Our website may contain links to other websites of interest. However, once
       you have used these links to leave our site, you should note that we do
@@ -68,7 +68,7 @@ const Privacypolicypage = () => {
       privacy statement. You should exercise caution and look at the privacy
       statement applicable to the website in question.
     </p>
-    <h2 className="text-2xl font-bold mb-2">
+    <h2 className="text-2xl font-bold mb-2 text-red-700">
       Controlling Your Personal Information
     </h2>
     <p className="mb-4">
