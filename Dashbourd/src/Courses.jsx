@@ -101,9 +101,9 @@ const Courses = () => {
   const [courses, setCourses] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:3000/Corse')
+    axios.get('http://localhost:8080/plans')
       .then(response => {
-        setCourses(response.data);
+        setCourses(response.data.plans);
       })
       .catch(error => {
         console.error('Error fetching data:', error);
@@ -113,7 +113,7 @@ const Courses = () => {
   const handleDelete = (courseId) => {
     setCourses(prevCourses => prevCourses.filter(course => course.id !== courseId));
 
-    axios.put(`http://localhost:3000/Corse/${courseId}`)
+    axios.put(`http://localhost:8080/softDeletePlanById/${courseId}`)
       .then(response => {
         console.log('Course deleted successfully:', response.data);
       })
@@ -124,8 +124,9 @@ const Courses = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#f5f5f5] flex justify-center ml-20 items-center">
-    <table className="w-9/12 h-5/6 bg-[#f5f5f5] my-6 md:ml-24 px-10 py-8 rounded-lg shadow-md">
+    <div className="min-h-screen bg-[#f5f5f5] flex justify-center items-center">
+      <div className="overflow-auto rounded-lg shadow w-full sm:max-w-3xl my-12 mx-4 sm:mx-8">
+        <table className="w-full bg-[#f5f5f5] table-auto">
       <thead className="bg-red-700 text-white "> {/* Use red-700 for the header background */}
           <tr>
             <th className="py-2 px-4">Course Name</th>
@@ -145,31 +146,34 @@ const Courses = () => {
             >
               <td className="py-2 px-4">
             
-                {course.Course_Name}
+                {course.name}
            
               </td>
               <td className="py-2 px-4">
               
-                 {course.Course_Category}
+                 {course.category}
            
               </td>
               <td className="py-2 px-4">
               
-                 {course.Course_Duration}
+                 {course.duration}
                  
               </td>
               <td className="py-2 px-4">
                 
-                {course.Pricing}
+                {course.price}
                  
               </td>
               <td className="py-2 px-4">
-               {course.Course_description}
+               {course.description}
                  
       
               </td>
               <td className="py-2 px-4">
-              {course.image}
+                <img src={course.image} alt="" 
+                style={{ maxWidth: '100px', maxHeight: '100px' }}
+                />
+              
               </td>
               <td className="py-2 px-4 flex justify-end">
                 <button
@@ -184,6 +188,7 @@ const Courses = () => {
           ))}
         </tbody>
       </table>
+    </div>
     </div>
   );
 };

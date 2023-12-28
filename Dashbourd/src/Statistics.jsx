@@ -21,11 +21,11 @@ const Statistics = () => {
   }, []);
 
   return (
-    <div className="container mx-auto px-4 py-4 md:py-12 ml-60">
-      <div className="flex flex-wrap text-center">
+    <div className="bg-[#f5f5f5] container flex justify-center items-center" >
+    <div className="grid  grid-cols-1 sm:grid-cols-2 md:grid-cols-3 text-center  sm:max-w-3xl my-12 mx-4 sm:mx-8 md:gap-32 md:mr-32">
         {/* Plan Statistics */}
-        <div className="p-4 md:w-1/2 lg:w-1/4">
-          <div className="border-2 border-gray-200 px-4 py-6 rounded-lg transform transition duration-500 hover:scale-110 bg-white">
+        <div className="p-4 w-[20rem] sm:w-[20rem] md:w-[20rem] lg:w-[20m]">
+          <div className="border-2 border-gray-200 px-4 py-6 rounded-lg transform transition duration-500 hover:scale-110  bg-white">
             <svg
               fill="none"
               stroke="currentColor"
@@ -44,7 +44,7 @@ const Statistics = () => {
         </div>
 
         {/* User Statistics */}
-        <div className="p-4 md:w-1/2 lg:w-1/4">
+        <div className="p-4 w-[20rem] sm:w-[20rem] md:w-[20rem] lg:w-[20m]">
           <div className="border-2 border-gray-200 px-4 py-6 rounded-lg transform transition duration-500 hover:scale-110 bg-white">
             <svg
               fill="none"
@@ -65,7 +65,7 @@ const Statistics = () => {
         </div>
 
         {/* Blog Statistics */}
-        <div className="p-4 md:w-1/2 lg:w-1/4">
+        <div className="p-4 w-[20rem] sm:w-[20rem] md:w-[20rem] lg:w-[20m]">
           <div className="border-2 border-gray-200 px-4 py-6 rounded-lg transform transition duration-500 hover:scale-110 bg-white">
             <svg
               fill="none"

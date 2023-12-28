@@ -46,7 +46,7 @@ const Account = () => {
 
   return (
     <div className="flex flex-wrap mt-24 bg-[#f5f5f5]">
-      <div className="w-[260px] h-full fixed ">
+      <div className="w-[260px] h-full absolute ">
         <div
           className={`peer absolute top-0 border ${position} lg:left-0 h-screen w-full object-cover transition-all delay-100 duration-1000`}
         >
@@ -87,7 +87,7 @@ const Account = () => {
             id="closeSideBar"
             className={`${
               isSideOpen ? "block" : "hidden"
-            } lg:hidden h-10 w-10 bg-grey-600 absolute right-0 mt-16 -mr-10 flex items-center shadow rounded-tr rounded-br justify-center cursor-pointer text-white`}
+            } lg:hidden h-10 w-10 bg-grey-600 absolute right-0 mt-16 -mr-10 flex items-center shadow rounded-tr rounded-br justify-center cursor-pointer bg-gray-600 text-white`}
             onClick={openSideBar}
           >
             <svg
@@ -107,7 +107,7 @@ const Account = () => {
               <line x1="6" y1="6" x2="18" y2="18"></line>
             </svg>
           </button>
-          <aside className="flex flex-col w-64 h-screen px-5 py-8  bg-black border-r rtl:border-r-0 rtl:border-l dark:bg-gray-900 dark:border-gray-700">
+          <aside className="flex flex-col w-64 h-screen px-5 py-8  bg-black border-r rtl:border-r-0 rtl:border-l ">
            
 
 
@@ -120,8 +120,8 @@ const Account = () => {
 
                   <button
                      className={`w-full flex items-center px-3 py-2 text-white transition-colors duration-300 transform rounded-lg dark:text-gray-200  ${
-                      page === "profile" && "bg-red-700 dark:bg-gray-800 dark:text-gray-200 text-gray-700"
-                    } hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700`}
+                      page === "profile" && "bg-red-700 dark:bg-red-800 dark:text-gray-200 text-gray-700"
+                    } hover:bg-gray-100 dark:hover:bg-red-800 dark:hover:text-gray-200 hover:text-gray-700`}
                     onClick={() => setPage("profile")}
                   >
                     <span className="mx-2 text-sm font-medium">Profile</span>
@@ -129,8 +129,8 @@ const Account = () => {
                   <button
                   
                     className={`w-full flex items-center px-3 py-2 text-white transition-colors duration-300 transform rounded-lg dark:text-gray-200  ${
-                      page === "PlanUserProfaile" && "bg-red-700 dark:bg-gray-800 dark:text-gray-200 text-gray-700"
-                    } hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700`}
+                      page === "PlanUserProfaile" && "bg-red-700 dark:bg-red-800 dark:text-gray-200 text-gray-700"
+                    } hover:bg-gray-100 dark:hover:bg-red-800 dark:hover:text-gray-200 hover:text-red-700`}
                     onClick={() => setPage("PlanUserProfaile")}
                   >
                     <span className="mx-2 text-sm font-medium">Training plan</span>

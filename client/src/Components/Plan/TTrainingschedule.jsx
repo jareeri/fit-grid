@@ -76,16 +76,16 @@ const Trainingschedule = () => {
   };
 
   return (
-    <div className="bg-white rounded-lg overflow-hidden shadow-lg mx-auto my-8 max-w-screen-md flex justify-end items-center ">
+    <div className="bg-white rounded-lg overflow-hidden shadow-lg mx-auto my-8 max-w-screen-lg  ">
       <div className="p-6 ">
-      <h2 className="text-3xl font-semibold mb-4 text-red-700">Bodybuilder's Nutrition Facts</h2>
+      <h2 className="text-3xl font-semibold mb-4 text-red-700">Workout Routine</h2>
         <table className="w-full text-left">
           <thead>
             <tr className="border-b">
               <th className="py-2">Exercise Name</th>
               <th className="py-2">Repetitions</th>
               <th className="py-2">Rest</th>
-              <th />
+              <th className="py-2">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -102,7 +102,7 @@ const Trainingschedule = () => {
                     onChange={(e) => handleInputChange(exercise.id, 'name', e.target.value)}
                   />
                 </td>
-                <td className="p-1 ">
+                <td className="p-3 ">
                   <input
                     type="text"
                     value={exercise.repetitions}
@@ -110,7 +110,7 @@ const Trainingschedule = () => {
                     onChange={(e) => handleInputChange(exercise.id, 'repetitions', e.target.value)}
                   />
                 </td>
-                <td className="p-2 ">
+                <td className="p-3 ">
                   <input
                     type="text"
                     value={exercise.rest}
@@ -118,7 +118,7 @@ const Trainingschedule = () => {
                     onChange={(e) => handleInputChange(exercise.id, 'rest', e.target.value)}
                   />
                 </td>
-                <td className="p-3  flex justify-end">
+                <td className="">
                   <button
                     type="button"
                     className="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"
@@ -137,9 +137,10 @@ const Trainingschedule = () => {
               </tr>
             ))}
             <tr>
-              <td className="p-3 ">
+              <td className="p-3  ">
                 <input
                   type="text"
+                  placeholder='Exercise Name'
                   value={newExercise.name}
                   onChange={(e) => setNewExercise({ ...newExercise, name: e.target.value })}
                 />
@@ -147,6 +148,7 @@ const Trainingschedule = () => {
               <td className="p-3 ">
                 <input
                   type="text"
+                  placeholder='Repetitions'
                   value={newExercise.repetitions}
                   onChange={(e) => setNewExercise({ ...newExercise, repetitions: e.target.value })}
                 />
@@ -154,11 +156,12 @@ const Trainingschedule = () => {
               <td className="p-3 ">
                 <input
                   type="text"
+                  placeholder='Rest'
                   value={newExercise.rest}
                   onChange={(e) => setNewExercise({ ...newExercise, rest: e.target.value })}
                 />
               </td>
-              <td className="p-3  flex justify-end">
+              <td className=" ">
                 <button
                   type="button"
                   className="text-sm bg-green-500 hover:bg-green-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"

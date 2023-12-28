@@ -103,7 +103,7 @@ const Dietaryschedule = () => {
   };
 
   return (
-    <div className="bg-white rounded-lg overflow-hidden shadow-lg mx-auto my-8 max-w-screen-md">
+    <div className="bg-white rounded-lg overflow-hidden shadow-lg mx-auto my-8 max-w-screen-lg">
       <div className="p-6">
         <h2 className="text-3xl font-semibold mb-4 text-red-700">
           Bodybuilder's Nutrition Facts
@@ -167,6 +167,7 @@ const Dietaryschedule = () => {
               <td className="py-2">
                 <input
                   type="text"
+                  placeholder='Nutrient'
                   value={newNutritionItem.nutrient}
                   onChange={(e) =>
                     setNewNutritionItem({
@@ -179,6 +180,7 @@ const Dietaryschedule = () => {
               <td className="py-2">
                 <input
                   type="text"
+                  placeholder='Amount'
                   value={newNutritionItem.amount}
                   onChange={(e) =>
                     setNewNutritionItem({
@@ -191,6 +193,7 @@ const Dietaryschedule = () => {
               <td className="py-2">
                 <input
                   type="text"
+                  placeholder='Daily Value'
                   value={newNutritionItem.daily_value}
                   onChange={(e) =>
                     setNewNutritionItem({

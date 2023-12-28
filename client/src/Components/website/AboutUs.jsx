@@ -1,31 +1,53 @@
-import React from 'react';
+import React from "react";
+import { useEffect } from "react";
+import Statestic from "../Landing/Statestic";
 
 const AboutUs = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
-    <div className='bg-[#f5f5f5] py-16 '>
-      <div className=' flex flex-col-reverse md:flex-row justify-center items-center mx-16 my-16 ml-32'>
-        <div className='w-full md:w-1/2 p-8'>
-          <h1 className='py-5 text-red-700 text-center text-3xl md:text-4xl font-bold'>
-            About Us
-          </h1>
-          <p className='text-justify text-black'>
-          FitGrid is not just a platform; it's your passport to a revolutionary online sports learning experience. We take pride in offering top-tier educational courses across a spectrum of sports disciplines, giving individuals the power to engage in exercises and elevate their skills from the comfort of their own space, at any time that suits them.
+    <div className="bg-[#f5f5f5]  ">
+      {/* component */}
 
-What sets FitGrid apart is our commitment to delivering high-quality content curated by experienced professionals in the field. Our platform boasts a diverse array of courses led by expert trainers, ensuring that participants receive the guidance they need to excel in their chosen sport. Whether you're a seasoned athlete looking to refine your technique or a beginner eager to dive into a new sport, FitGrid has something for everyone.
-
-As a subscriber, you unlock a treasure trove of exclusive benefits. Gain access to innovative exercises that push the boundaries of traditional training, participate in advanced workshops that delve into the intricacies of each sport, and receive valuable nutrition tips to complement your fitness journey. We believe in a holistic approach to sports education, addressing not just the physical aspects but also the crucial role nutrition plays in achieving peak performance.
-
-But FitGrid is more than just a repository of courses; it's a community. We foster an environment that encourages direct interaction with coaches and fellow sports enthusiasts. Imagine having a virtual support system cheering you on as you strive to reach your sports goals. Our platform goes beyond the screen, creating a dynamic and stimulating space for personal success.
-
-Immerse yourself in the FitGrid experience, where convenience meets excellence.
-          </p>
+      <div className="container m-auto px-6 text-gray-600 md:px-12 xl:px-6  ">
+        <div className="space-y-6 md:space-y-0 md:flex md:gap-6 lg:items-center lg:gap-12 mt-24">
+          <div className="md:5/12 lg:w-5/12 mt-20">
+            <img
+              id="immm"
+              src="https://img.freepik.com/free-photo/black-white-photo-muscular-build-man-using-sports-chalk-while-before-lifting-barbell-weight-training-gym_637285-2505.jpg?size=626&ext=jpg&ga=GA1.1.1546980028.1703548800&semt=ais"
+              alt="image"
+              loading="lazy"
+              width=""
+              height=""
+            />
+          </div>
+          <div className="md:7/12 lg:w-6/12 mt-20">
+            <h2 className="text-2xl text-gray-900 font-bold md:text-4xl">
+              {" "}
+              About <span className="text-red-700">Us</span>
+            </h2>
+            <p className=" text-gray-600 text mt-20">
+              FitGrid is not just a platform; it's your passport to a
+              revolutionary online sports learning experience. We take pride in
+              offering top-tier educational courses across a spectrum of sports
+              disciplines, giving individuals the power to engage in exercises
+              and elevate their skills from the comfort of their own space, at
+              any time that suits them.
+            </p>
+            <p className="mt-4 text-gray-600">
+              {" "}
+              What sets FitGrid apart is our commitment to delivering
+              high-quality content curated by experienced professionals in the
+              field. Our platform boasts a diverse array of courses led by
+              expert trainers, ensuring that participants receive the guidance
+              they need to excel in their chosen sport.
+            </p>
+          </div>
         </div>
-        <div className='w-7/12 md:w-1/2 p-5'>
-          <img
-            className='object-cover rounded-md shadow-md'
-            src="https://img.freepik.com/premium-photo/young-bodybuilder-posing-gym-camera-sporty-athletic-man-training-his-biceps-gym_116317-11289.jpg?size=626&ext=jpg&ga=GA1.1.1826414947.1699574400&semt=ais"
-            alt="About us"
-          />
+        <div className="">
+          <Statestic />
         </div>
       </div>
     </div>

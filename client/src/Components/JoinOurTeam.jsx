@@ -1,147 +1,121 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { Link } from 'react-router-dom';
+import axios from 'axios'; // Import axios
 
 const JoinOurTeam = () => {
-  const jordanGovernorates = [
-    'Amman',
-    'Irbid',
-    'Zarqa',
-    'Ajloun',
-    'Jerash',
-    'Mafraq',
-    'Balqa',
-    'Madaba',
-    'Karak',
-    'Tafilah',
-    'Maan',
-    'Aqaba',
-  ];
-
   const [formData, setFormData] = useState({
-    username: '',
-    email: '',
-    phone: '',
-    city: '',
-    area: '',
+    whyJoin: '',
+    experience: '',
+    certificate: '',
   });
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.id]: e.target.value });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
+  const handleSubmit = async () => {
     try {
-      // Make a POST request using Axios
-      const response = await axios.post('http://localhost:3000/Join', formData);
+      // Send the form data to the server
+      const response = await axios.post('http://localhost:8080/join-our-team', formData);
 
-      // Handle the response as needed
-      console.log('Server Response:', response.data);
-
-      // Optionally, you can reset the form or navigate to another page after a successful submission
-      // resetForm();
+      // Handle the response as needed (e.g., show success message)
+      console.log('Join team form submitted successfully:', response.data);
     } catch (error) {
-      // Handle errors
-      console.error('Error:', error.message);
+      // Handle errors (e.g., show error message)
+      console.error('Error submitting join team form:', error);
     }
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen mt-24 bg-[#f5f5f5]">
-      <form
-        className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-full max-w-md"
-        onSubmit={handleSubmit}
-      >
-        <h2 className="text-2xl font-bold mb-6 text-center text-red-700">Join Our Team</h2>
+    <div>
+      <div className="bg-white">
+        <div className="mx-auto  sm:px-6 lg:px-8">
+          <div className="relative isolate overflow-hidden px-6 py-24 text-center sm:rounded-3xl sm:px-16">
+            <h2 className="font-nudge-extrabold mx-auto max-w-2xl text-3xl font-bold uppercase tracking-wide sm:text-4xl">
+              Join our Team
+            </h2>
+            <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-gray-600">
+              Experience the benefits of our community. No obligations, just join and explore.
+            </p>
 
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="grid-username">
-            Username
-          </label>
-          <input
-            className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="grid-username"
-            type="text"
-            placeholder="YourUsername"
-            onChange={handleChange}
-          />
-          <p className="text-red-500 text-xs italic">Please fill out this field.</p>
-        </div>
+            {/* New form fields */}
+            <div className="mt-6 max-w-xl mx-auto space-y-4">
+              <label htmlFor="whyJoin" className="text-md font-medium text-gray-700">
+                Why do you want to join?
+              </label>
+              <input
+                type="text"
+                id="whyJoin"
+                name="whyJoin"
+                value={formData.whyJoin}
+                onChange={handleChange}
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-red-700"
+              />
 
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="grid-email">
-            Email
-          </label>
-          <input
-            className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="grid-email"
-            type="email"
-            placeholder="example@example.com"
-            onChange={handleChange}
-          />
-        </div>
+              <label htmlFor="experience" className="text-md font-medium text-gray-700">
+                Previous experience (if any)
+              </label>
+              <input
+                type="text"
+                id="experience"
+                name="experience"
+                value={formData.experience}
+                onChange={handleChange}
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-red-700"
+              />
 
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="grid-phone">
-            Phone
-          </label>
-          <input
-            className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="grid-phone"
-            type="tel"
-            placeholder="555-555-5555"
-            onChange={handleChange}
-          />
-        </div>
-
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="grid-city">
-            City
-          </label>
-          <div className="relative">
-            <select
-              className="block appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="grid-city"
-              onChange={handleChange}
-            >
-              {jordanGovernorates.map((governorate, index) => (
-                <option key={index}>{governorate}</option>
-              ))}
-            </select>
-            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-              <svg
-                className="fill-current h-4 w-4"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-              >
-                <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-              </svg>
+              <label htmlFor="certificate" className="text-md font-medium text-gray-700">
+                Relevant certificates (if any)
+              </label>
+              <input
+                type="text"
+                id="certificate"
+                name="certificate"
+                value={formData.certificate}
+                onChange={handleChange}
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-red-700"
+              />
             </div>
+
+            <div className="mt-12 flex items-center justify-center gap-x-6">
+              <button
+                type="button"
+                onClick={handleSubmit}
+                className="text-md relative inline-flex items-center gap-x-2 rounded-lg bg-red-700 px-6 py-4 font-semibold text-white shadow-sm hover:bg-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-600"
+              >
+                Join Now
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  aria-hidden="true"
+                  className="-mr-0.5 h-5 w-5"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M16.72 7.72a.75.75 0 011.06 0l3.75 3.75a.75.75 0 010 1.06l-3.75 3.75a.75.75 0 11-1.06-1.06l2.47-2.47H3a.75.75 0 010-1.5h16.19l-2.47-2.47a.75.75 0 010-1.06z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </button>
+            </div>
+
+            <svg
+              viewBox="0 0 1024 1024"
+              className="absolute left-1/2 top-1/2 -z-10 h-[72rem] w-[72rem] -translate-x-1/2 [mask-image:radial-gradient(closest-side,white,transparent)]"
+              aria-hidden="true"
+            >
+              <circle
+                cx={512}
+                cy={512}
+                r={512}
+                fill="url(#827591b1-ce8c-4110-b064-7cb85a0b1217)"
+                fillOpacity="0.7"
+              />
+            </svg>
           </div>
         </div>
-
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="grid-area">
-            Text
-          </label>
-          <textarea
-            className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="grid-area"
-            placeholder="Your Area"
-            rows="4"
-            onChange={handleChange}
-          ></textarea>
-        </div>
-<div className='flex justify-center'>
-        <button
-          className="bg-red-700 hover:bg-black text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-          type="submit"
-        >
-          Join Now
-        </button>
-        </div>
-      </form>
+      </div>
     </div>
   );
 };

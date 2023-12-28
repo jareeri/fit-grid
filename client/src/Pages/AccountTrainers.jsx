@@ -54,7 +54,7 @@ function logout() {
   return (
     <div className="flex flex-wrap mt-24 bg-[#f5f5f5] ">
       {/* sidebar */}
-      <div className=" w-[260px] h-full fixed ">
+      <div className=" w-[260px] h-full absolute ">
         <div
           className={`peer absolute top-0 border ${position} lg:left-0 h-full w-full object-cover transition-all delay-100 duration-1000`}
         >
@@ -95,7 +95,7 @@ function logout() {
             id="closeSideBar"
             className={`${
               isSideOpen ? "block" : "hidden"
-            } lg:hidden h-10 w-10 bg-grey-600 absolute right-0 mt-16 -mr-10 flex items-center shadow rounded-tr rounded-br justify-center cursor-pointer text-white`}
+            } lg:hidden h-10 w-10 bg-grey-600 absolute right-0 mt-16 -mr-10 flex items-center shadow rounded-tr rounded-br justify-center cursor-pointer bg-gray-600 text-white`}
             onClick={openSideBar}
           >
             <svg
@@ -115,7 +115,7 @@ function logout() {
               <line x1="6" y1="6" x2="18" y2="18"></line>
             </svg>
           </button>
-          <aside className="flex flex-col w-64 h-screen px-5 py-8  bg-black border-r rtl:border-r-0 rtl:border-l dark:bg-gray-900 dark:border-gray-700">
+          <aside className="flex flex-col w-64 h-screen px-5 py-8  bg-black border-r rtl:border-r-0 rtl:border-l ">
            
 
 
@@ -128,16 +128,16 @@ function logout() {
 
                   <button
                     className={`w-full flex items-center px-3 py-2 text-white transition-colors duration-300 transform rounded-lg dark:text-gray-200  ${
-                      page === "TProfile" && "bg-red-700 dark:bg-gray-800 dark:text-gray-200 text-gray-700"
-                    } hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700`}
+                      page === "TProfile" && "bg-red-700 dark:bg-red-800 dark:text-gray-200 text-gray-700"
+                    } hover:bg-gray-100 dark:hover:bg-red-800 dark:hover:text-gray-200 hover:text-gray-700`}
                     onClick={() => setPage("TProfile")}
                   >
                     <span className="mx-2 text-sm font-medium">Profile</span>
                   </button>
                   <button
                     className={`w-full flex items-center px-3 py-2 text-white transition-colors duration-300 transform rounded-lg dark:text-gray-200  ${
-                      page === "Course" && "bg-red-700 dark:bg-gray-800 dark:text-gray-200 text-gray-700"
-                    } hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700`}
+                      page === "Course" && "bg-red-700 dark:bg-red-800 dark:text-gray-200 text-gray-700"
+                    } hover:bg-gray-100 dark:hover:bg-red-800 dark:hover:text-gray-200 hover:text-gray-700`}
                     onClick={() => setPage("Course")}
                   >
                     <span className="mx-2 text-sm font-medium">Training plan</span>
@@ -145,8 +145,8 @@ function logout() {
 
                   <button
                     className={`w-full flex items-center px-3 py-2 text-white transition-colors duration-300 transform rounded-lg dark:text-gray-200  ${
-                      page === "Blog" && "bg-red-700 dark:bg-gray-800 dark:text-gray-200 text-gray-700"
-                    } hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700`}
+                      page === "Blog" && "bg-red-700 dark:bg-red-800 dark:text-gray-200 text-gray-700"
+                    } hover:bg-gray-100 dark:hover:bg-red-800 dark:hover:text-gray-200 hover:text-gray-700`}
                     onClick={() => setPage("Blog")}
                   >
                     <span className="mx-2 text-sm font-medium">Blogs</span>

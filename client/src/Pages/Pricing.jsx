@@ -59,8 +59,11 @@ const Pricing = () => {
                 <h3 className="text-center font-bold text-4xl mb-5 text-black">
                   ${item.price}
                 </h3>
-                <p className="text-sm px-5 mb-8 text-black">
+                <p className="text-sm px-5 mb-4 text-black">
                   {item.description}
+                </p>
+                <p className="text-sm px-5 mb-8 text-black">
+                  {item.features}
                 </p>
               </div>
               <div className="w-full">

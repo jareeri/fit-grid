@@ -5,6 +5,7 @@ import { useCookies } from "react-cookie";
 import Cookies from "js-cookie";
 import { GoogleLogin, googleLogout, useGoogleLogin } from "@react-oauth/google";
 // import { useAuth } from "../hooks/Authcontext";
+import Swal from 'sweetalert2';
 
 const SignIn = () => {
   const history = useNavigate();
@@ -70,6 +71,7 @@ const SignIn = () => {
       return;
     }
 
+    
     try {
       setLoading(true);
       const response = await axios.post("http://localhost:8080/login", {
@@ -91,7 +93,14 @@ const SignIn = () => {
 
       setError("Sign-in successful");
       history("/");
-      alert("Sign-in successful"); // Adjust alert message based on your requirements
+      const result = await Swal.fire({
+        icon: 'success',
+        title: 'Successfully logged in',
+        text: "Welcome To FitGrid",
+        showConfirmButton: true,
+        // timer: 5000, // Set a timer for 5 seconds (adjust as needed)
+        // confirmButtonText: 'OK',
+      });
       console.log("Sign-in successful:", response.data);
     } catch (error) {
       console.error("Sign-in error:", error);
@@ -132,7 +141,7 @@ const SignIn = () => {
         <br />
         <button
           onClick={handleSignIn}
-          className={`w-full p-3 bg-gradient-to-r from-pink-500 to-red-500 text-white rounded-md mt-4 hover:opacity-90 ${
+          className={`w-full p-3 bg-gradient-to-r from-red-700 to-red-800 text-white rounded-md mt-4 hover:opacity-90 ${
             loading && "opacity-50 cursor-not-allowed"
           }`}
           disabled={loading}
@@ -154,7 +163,7 @@ const SignIn = () => {
         <div className="mt-6">
           <button
             onClick={() => loginbygoogle()}
-            className="flex items-center justify-center bg-gray-200 p-3 rounded-md"
+            className="flex items-center justify-center w-full bg-gray-200 p-3 rounded-md"
           >
             <img
               className="w-6 h-6 mr-2"

@@ -106,7 +106,7 @@ const Navbar = () => {
             <li>
               <Link
                 to="/"
-                className="block py-2 pl-3 pr-4 text-black bg-[#f5f5f5] rounded md:bg-transparent md:text-black md:p-0 md:dark:text-black text-center"
+                className="block py-2 pl-3 pr-4 text-black bg-[#f5f5f5] rounded md:bg-transparent md:text-black md:p-0 md:dark:text-red-700 text-center"
                 aria-current="page"
               >
                 Home
@@ -118,7 +118,7 @@ const Navbar = () => {
               <Link
                 to="/trainers"
                 className={classNames(
-                  "block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent md:p-0",
+                  "block py-2 pl-3 pr-4 rounded hover:bg-red-100 md:hover:bg-transparent md:p-0",
                   "text-gray-900 dark:text-black md:dark:text-black text-center",
                   {
                     "md:hover:text-black dark:hover:text-black":
@@ -133,6 +133,7 @@ const Navbar = () => {
                 Trainers
               </Link>
             </li>
+            
             <li>
               <Link
                 to="/Exercises"
@@ -156,14 +157,14 @@ const Navbar = () => {
               <Link
                 to="/about"
                 className={classNames(
-                  "block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent md:p-0",
+                  "block py-2 pl-3 pr-4 rounded hover:bg-red-700 md:hover:bg-transparent md:p-0",
                   "text-gray-900 dark:text-black md:dark:text-black text-center",
                   {
-                    "md:hover:text-black dark:hover:text-black":
+                    "md:hover:text-black dark:hover:text-red-700":
                       !isActive("/about"),
                   },
                   {
-                    "md:hover:text-black dark:hover:text-black":
+                    "md:hover:text-black dark:hover:text-red-700":
                       isActive("/about"),
                   }
                 )}
@@ -206,7 +207,7 @@ const Navbar = () => {
         </div>
         <div  className={`flex md:order-2 ${
             isMenuOpened ? "block" : "hidden"
-          } w-full md:flex md:w-auto md:order-1 flex justify-center`}>
+          } w-full md:flex md:w-auto md:order-1 flex justify-center bg-[#f5f5f5] rounded-lg`}>
           {user ? (
             <>
        {role === "trainer" ? (

@@ -243,8 +243,9 @@ const Blogs = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#f5f5f5] flex justify-center ml-20 items-center">
-    <table className="w-9/12 h-5/6 bg-[#f5f5f5] my-6 md:ml-24 px-10 py-8 rounded-lg shadow-md">
+    <div className="min-h-screen bg-[#f5f5f5] flex justify-center items-center">
+      <div className="overflow-auto rounded-lg shadow w-full sm:max-w-3xl my-12 mx-4 sm:mx-8">
+        <table className="w-full bg-[#f5f5f5] table-auto">
       <thead className="bg-red-700 text-white "> {/* Use red-700 for the header background */}
           <tr>
             <th className="py-2 px-4 ">Image</th>
@@ -287,6 +288,7 @@ const Blogs = () => {
           ))}
         </tbody>
       </table>
+    </div>
     </div>
   );
 };

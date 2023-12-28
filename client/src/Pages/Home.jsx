@@ -16,7 +16,7 @@ const Home = () => {
   return (
     <div className='bg-[#f5f5f5]'> 
       <Hero /> 
-      <Statestic/>
+      {/* <Statestic/> */}
       <AboutHome/>
      <BestTrainers/>
       <Category />
